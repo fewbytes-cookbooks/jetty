@@ -1,0 +1,9 @@
+#! /bin/bash
+
+exec 2>&1
+source /etc/default/jetty
+export JAVA_HOME
+cd <%= node["jetty"]["home"] %>
+exec chpst -u <%= @options[:user] %> java $JAVA_OPTIONS \
+  -Djetty.home=<%= node["jetty"]["home"] %> \
+  -Djava.io.tmpdir=$JETTY_TMP -jar <%= node["jetty"]["home"] %>/start.jar --pre=etc/jetty-logging.xml $JETTY_ARGS

@@ -16,7 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-include_recipe "java"
+include_recipe "jetty::common"
 
 case node["platform"]
 when "centos","redhat","fedora"
@@ -49,21 +49,4 @@ service "jetty" do
     action [:enable, :start]
   end
 end
-
-template "/etc/default/jetty" do
-  source "default_jetty.erb"
-  owner "root"
-  group "root"
-  mode "0644"
-  notifies :restart, resources(:service => "jetty"), :delayed
-end
-
-template "/etc/jetty/jetty.xml" do
-  source "jetty.xml.erb"
-  owner "root"
-  group "root"
-  mode "0644"
-  notifies :restart, resources(:service => "jetty"), :delayed
-end
-
 
