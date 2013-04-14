@@ -16,7 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-include_recipe "jetty::common"
+node.default["jetty"]["version"] = 6 # currently all the distros below are configured to use jetty 6.x packages.
 
 case node["platform"]
 when "centos","redhat","fedora"
@@ -35,8 +35,14 @@ jetty_pkgs = value_for_platform(
 jetty_pkgs.each do |pkg|
   package pkg do
     action :install
+    options "-y" if node.platform_family? "debian"
   end
 end
+
+# we can't write config files prior to installing package because it makes apt-get unhappy.!
+# We could pass --force-* to package managers but it requires testing and per distro code.!
+# The crappy and order dependent (sigh) way is easier...
+include_recipe "jetty::common"
 
 service "jetty" do
   case node["platform"]

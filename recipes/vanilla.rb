@@ -18,10 +18,6 @@
 
 node.default["jetty"]["home"] = node["jetty"]["install_dir"]
 
-user node["jetty"]["user"] do
-  home node["jetty"]["install_dir"]
-end
-
 include_recipe "jetty::common"
 
 directory node["jetty"]["install_dir"] do

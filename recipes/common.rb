@@ -12,6 +12,10 @@ else
   "jetty.xml.erb"
 end
 
+user node["jetty"]["user"] do
+  home node["jetty"]["install_dir"]
+end
+
 %w(log_dir tmp_dir webapp_dir).each do |dir|
   directory node["jetty"][dir] do
     mode "0755"
