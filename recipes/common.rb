@@ -1,5 +1,17 @@
 include_recipe "java"
 
+
+major_ver = if node["jetty"]["version"].is_a? String
+  node["jetty"]["version"].split(".").first
+else
+  node["jetty"]["version"]
+end.to_i
+template_name = if major_ver > 6 # xml config format and class names have changed when jetty moved to eclipse
+  "jetty8.xml.erb"
+else
+  "jetty.xml.erb"
+end
+
 %w(log_dir tmp_dir webapp_dir).each do |dir|
   directory node["jetty"][dir] do
     mode "0755"
@@ -26,7 +38,7 @@ template "/etc/default/jetty" do
 end
 
 template ::File.join(node["jetty"]["config_dir"], "jetty.xml") do
-  source "jetty.xml.erb"
+  source template_name
   owner "root"
   group "root"
   mode "0644"
