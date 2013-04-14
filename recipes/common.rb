@@ -1,28 +1,20 @@
 include_recipe "java"
 
-directory node["jetty"]["log_dir"] do
-  owner node["jetty"]["user"]
-  mode "0755"
+%w(log_dir tmp_dir webapp_dir).each do |dir|
+  directory node["jetty"][dir] do
+    mode "0755"
+    owner node["jetty"]["user"]
+    recursive true
+  end
 end
 
 directory node["jetty"]["config_dir"] do
   mode "0755"
 end
 
-directory node["jetty"]["tmp_dir"] do
-  mode "0755"
-  recursive true
-end
-
 directory node["jetty"]["context_dir"] do
   owner node["jetty"]["user"]
   mode "0755"
-end
-
-directory node["jetty"]["webapp_dir"] do
-  owner node["jetty"]["user"]
-  mode "0755"
-  recursive true
 end
 
 template "/etc/default/jetty" do
