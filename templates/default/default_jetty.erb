@@ -29,7 +29,7 @@ JETTY_LOGS="<%= node["jetty"]["log_dir"] %>"
 #JETTY_SHUTDOWN=30
 
 # Additional arguments to pass to Jetty
-JETTY_ARGS="<%= node["jetty"]["jetty_args"] %>"
+JETTY_ARGS="<%= node["jetty"]["jetty_args"] %> <%= node["jetty"]["jetty_extra_args"].values.join(" ") %>"
 
 # Extra options to pass to the JVM
 JAVA_OPTIONS="<%= node["jetty"]["java_options"] %> <%= node["jetty"]["java_extra_options"].values.join(" ") %>"
