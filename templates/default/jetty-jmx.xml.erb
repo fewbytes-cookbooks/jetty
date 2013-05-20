@@ -13,12 +13,10 @@
   <!-- Set the java.rmi.server.hostname property in case you've    -->
   <!-- got a misconfigured /etc/hosts entry or the like.           -->
   <!-- =========================================================== -->
-  <!--·
   <Call class="java.lang.System" name="setProperty">
     <Arg>java.rmi.server.hostname</Arg>
-    <Arg>127.0.0.1</Arg>
+    <Arg><%= node["fqdn"] %></Arg>
   </Call>
-  -->
 
   <!-- =========================================================== -->
   <!-- Initialize an mbean server                                  -->
@@ -68,14 +66,12 @@
        port 1099. The argument below can be changed in order to comply
        with the firewall requirements.
   -->
-  <!--
   <Call name="createRegistry" class="java.rmi.registry.LocateRegistry">
-    <Arg type="java.lang.Integer"><SystemProperty name="jetty.jmxrmiport" default="1099"/></Arg>
+    <Arg type="java.lang.Integer"><SystemProperty name="jetty.jmxrmiport" default="<%= node["jetty"]["jmx"]["port"] %>"/></Arg>
     <Call name="sleep" class="java.lang.Thread">
        <Arg type="java.lang.Integer">1000</Arg>
     </Call>
   </Call>
-  -->
 
   <!-- Optionally add a remote JMX connector. The parameters of the constructor
        below specify the JMX service URL, and the object name string for the
