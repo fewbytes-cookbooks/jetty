@@ -21,7 +21,7 @@ default["jetty"]["port"] = 8080
 default["jetty"]["no_start"] = 0
 default["jetty"]["jetty_args"] = ""
 default["jetty"]["jetty_extra_args"] = {}
-default["jetty"]["java_options"] = "-Xmx512m -Djava.awt.headless=true"
+default["jetty"]["java_options"] = "-Xmx1024m -Djava.awt.headless=true"
 default["jetty"]["java_extra_options"] = {}
 default["jetty"]["max_threads"] = 200
 default["jetty"]["min_threads"] = 50
