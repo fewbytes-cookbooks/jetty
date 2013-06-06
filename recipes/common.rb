@@ -33,6 +33,11 @@ directory node["jetty"]["context_dir"] do
   mode "0755"
 end
 
+directory ::File.join(node["jetty"]["home"], "resources") do
+  owner node["jetty"]["user"]
+  mode "0755"
+end
+
 template "/etc/default/jetty" do
   source "default_jetty.erb"
   owner "root"
