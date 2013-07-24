@@ -41,6 +41,7 @@ end
   end
 end
 
+include_recipe "runit"
 runit_service "jetty" do
   options :user => node["jetty"]["user"]
 end
