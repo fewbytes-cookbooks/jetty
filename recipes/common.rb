@@ -16,6 +16,10 @@ user node["jetty"]["user"] do
   home node["jetty"]["install_dir"]
 end
 
+directory node["jetty"]["home"] do
+  mode "0755"
+end
+
 %w(log_dir tmp_dir webapp_dir).each do |dir|
   directory node["jetty"][dir] do
     mode "0755"
