@@ -49,11 +49,14 @@
             <Set name="host"><SystemProperty name="jetty.host" /></Set>
             <Set name="port"><SystemProperty name="jetty.port" default="<%= node["jetty"]["port"] %>"/></Set>
             <Set name="maxIdleTime">60000</Set>
-            <Set name="Acceptors">2</Set>
+            <Set name="Acceptors"><%= node["jetty"]["nio"]["acceptors"] %></Set>
+            <% if node["jetty"]["nio"]["accept_queue_size"] -%>
+            <Set name="acceptQueueSize"><%=  node["jetty"]["nio"]["accept_queue_size"] %></Set>
+            <% end -%>
             <Set name="statsOn">false</Set>
             <Set name="confidentialPort">8443</Set>
-	    <Set name="lowResourcesConnections">5000</Set>
-	    <Set name="lowResourcesMaxIdleTime">5000</Set>
+            <Set name="lowResourcesConnections">5000</Set>
+            <Set name="lowResourcesMaxIdleTime">5000</Set>
           </New>
       </Arg>
     </Call>
