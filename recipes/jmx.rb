@@ -1,4 +1,5 @@
 #this recipe enables jmx access for jetty
+extend ChefExt::JettyHelpers
 
 node.default["jetty"]["jetty_extra_args"]["jmx"] = "OPTIONS=Server,jmx etc/jetty-jmx.xml"
 node.default["jetty"]["java_extra_options"]["jmx"] = [
@@ -7,7 +8,7 @@ node.default["jetty"]["java_extra_options"]["jmx"] = [
     "-Dcom.sun.management.jmxremote.ssl=false",
     "-Dcom.sun.management.jmxremote.authenticate=false",
     "-Dcom.sun.management.jmxremote.local.only=false",
-    "-Djava.rmi.server.hostname=#{node["fqdn"]}",
+    "-Djava.rmi.server.hostname=#{accessible_hostname}",
 ].join(" ")
 
 template ::File.join(node["jetty"]["config_dir"], "jetty-jmx.xml") do
