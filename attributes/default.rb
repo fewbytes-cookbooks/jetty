@@ -27,6 +27,7 @@ default["jetty"]["max_threads"] = 200
 default["jetty"]["min_threads"] = 50
 default["jetty"]["nio"]["acceptors"] = 1
 default["jetty"]["nio"]["accept_queue_size"] = nil # OS default
+default["jetty"]["nio"]["max_idle_time"] = 60000
 default["jetty"]["cargo"]["username"] = "cargo"
 default["jetty"]["cargo"]["jetty6"]["source"]["url"] = "http://repo1.maven.org/maven2/org/codehaus/cargo/cargo-jetty-6-and-earlier-deployer/1.2.2/cargo-jetty-6-and-earlier-deployer-1.2.2.war"
 default["jetty"]["cargo"]["jetty6"]["source"]["checksum"] = "34ea6285c48c31e579aee69ba138cf94015070aacafc1a993f37a9e6534fe064"
