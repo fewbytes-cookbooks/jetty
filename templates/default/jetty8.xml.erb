@@ -38,12 +38,15 @@
           <New class="org.eclipse.jetty.server.nio.SelectChannelConnector">
             <Set name="host"><Property name="jetty.host" /></Set>
             <Set name="port"><Property name="jetty.port" default="<%= node["jetty"]["port"] %>"/></Set>
-            <Set name="maxIdleTime">300000</Set>
-            <Set name="Acceptors">2</Set>
+            <Set name="maxIdleTime"><%= node["jetty"]["nio"]["max_idle_time"] %></Set>
+            <Set name="Acceptors"><%= node["jetty"]["nio"]["acceptors"] %></Set>
+            <% if node["jetty"]["nio"]["accept_queue_size"] -%>
+            <Set name="acceptQueueSize"><%=  node["jetty"]["nio"]["accept_queue_size"] %></Set>
+            <% end -%>
             <Set name="statsOn">false</Set>
             <Set name="confidentialPort">8443</Set>
-	    <Set name="lowResourcesConnections">20000</Set>
-	    <Set name="lowResourcesMaxIdleTime">5000</Set>
+      	    <Set name="lowResourcesConnections">20000</Set>
+      	    <Set name="lowResourcesMaxIdleTime">5000</Set>
           </New>
       </Arg>
     </Call>
