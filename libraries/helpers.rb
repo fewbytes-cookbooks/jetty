@@ -15,7 +15,7 @@ module ChefExt
       candidates = []
       candidates << node["cloud"]["public_hostname"] if node["cloud"] and node["cloud"]["public_hostname"]
       candidates += [node["fqdn"], Socket.gethostname] 
-      candidates.find(&:resovable?) || node["ipaddress"]
+      candidates.find(&:resolvable?) || node["ipaddress"]
     end
   end
 end
