@@ -3,6 +3,8 @@
 exec 2>&1
 source /etc/default/jetty
 export JAVA_HOME
+ulimit -Sn <%= node["jetty"]["ulimit"]["nofile"] %>
+ulimit -Hn <%= node["jetty"]["ulimit"]["nofile"] %>
 cd <%= node["jetty"]["home"] %>
 exec chpst -u <%= @options[:user] %> java $JAVA_OPTIONS \
   -Djetty.home="<%= node["jetty"]["home"] %>" \
