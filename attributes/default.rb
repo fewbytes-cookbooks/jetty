@@ -21,7 +21,7 @@ default["jetty"]["port"] = 8080
 default["jetty"]["no_start"] = 0
 default["jetty"]["jetty_args"] = ""
 default["jetty"]["jetty_extra_args"] = {}
-default["jetty"]["java_options"] = "-Djava.awt.headless=true"
+default["jetty"]["java_options"] = "-server -Djava.awt.headless=true"
 default["jetty"]["java_extra_options"]["max_heap"] = "-Xmx1024m"
 default["jetty"]["ulimit"]["nofile"] = 32768
 default["jetty"]["java_extra_options"] = {}
