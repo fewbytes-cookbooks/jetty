@@ -23,6 +23,11 @@
     <Set name="ThreadPool">
       <!-- Default queued blocking threadpool -->
       <New class="org.eclipse.jetty.util.thread.QueuedThreadPool">
+        <Arg>
+          <New class="java.util.concurrent.ArrayBlockingQueue">
+            <Arg type="int"><%= node["jetty"]["threadpool_queue_size"] %></Arg>
+          </New>
+        </Arg>
         <Set name="minThreads"><%= node["jetty"]["min_threads"] %></Set>
         <Set name="maxThreads"><%= node["jetty"]["max_threads"] %></Set>
         <Set name="detailedDump">false</Set>
