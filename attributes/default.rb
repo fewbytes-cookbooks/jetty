@@ -25,6 +25,7 @@ default["jetty"]["java_options"] = "-server -Djava.awt.headless=true"
 default["jetty"]["java_extra_options"]["max_heap"] = "-Xmx1024m"
 default["jetty"]["ulimit"]["nofile"] = 32768
 default["jetty"]["java_extra_options"] = {}
+default["jetty"]["threadpool_queue_size"] = 60000
 default["jetty"]["max_threads"] = 200
 default["jetty"]["min_threads"] = 50
 default["jetty"]["nio"]["acceptors"] = 1
